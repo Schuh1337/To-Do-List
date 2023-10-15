@@ -21,8 +21,8 @@ def remove():
 def save():
     tasks = listbox.get(0, tk.END)
     folder = os.path.expanduser("~")
-    tasks_file = os.path.join(folder, "tasks.txt")
-    with open(tasks_file, "w") as file:
+    taskfile = os.path.join(folder, "tasks.txt")
+    with open(taskfile, "w") as file:
         for task in tasks:
             file.write(task + "\n")
 
@@ -30,8 +30,7 @@ def dresizing(window):
     window.resizable(False, False)
 
 def close():
-    save()
-    root.destroy()
+    save(), root.destroy()
 
 def length(new_value):
     return len(new_value) <= 75
@@ -57,10 +56,11 @@ remove_button.pack(side=tk.RIGHT)
 
 try:
     folder = os.path.expanduser("~")
-    tasks_file = os.path.join(folder, "tasks.txt")
-    with open(tasks_file, "r") as file:
-        for line in file:
-            listbox.insert(tk.END, line.strip())
+    taskfile = os.path.join(folder, "tasks.txt")
+    if os.path.exists(taskfile):
+        with open(taskfile, "r") as file:
+            for line in file:
+                listbox.insert(tk.END, line.strip())
 except FileNotFoundError:
     pass
 
