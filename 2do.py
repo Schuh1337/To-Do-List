@@ -1,7 +1,4 @@
-import tkinter as tk
-import win32gui
-import win32con
-import os
+import tkinter as tk, win32gui, win32con, os
 
 def add():
     task = entry.get()
